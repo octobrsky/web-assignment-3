@@ -11,7 +11,11 @@ fetchStudents((rawData) => {
   console.log(`Original ID: ${students[0].id}`);
   console.log("Attempting to change ID to 999...");
   
-  students[0].id = 999; // tries to overwrite read-only id
+  try {
+    students[0].id = 999; // tries to overwrite read-only id
+  } catch (err) {
+    // strict mode throws an error when trying to write to read-only property
+  }
 
   if (students[0].id === 1) {
     console.log(`Final ID: ${students[0].id} (Success: ID did not change)\n`);
